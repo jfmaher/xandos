@@ -23,6 +23,27 @@ def update_squares(display, the_squares):
                          colour,
                          square[0])
 
+def check_win(the_squares):
+    the_squares = [square[1] for square in the_squares]
+    winner = None
+    # Horizontal Checks
+    for x in [1,4,7]:
+        if the_squares[x] is not 0 and \
+                        the_squares[x-1] == the_squares[x] and the_squares[x] == the_squares[x+1]:
+            winner = the_squares[x]
+    # Vertical Checks
+    for x in [3,4,5]:
+        if the_squares[0] is not 0 and \
+                        the_squares[x-3] == the_squares[x] and the_squares[x] == the_squares[x+3]:
+            winner = the_squares[x]
+    # Diagonal Checks
+    if the_squares[4] is not 0:
+        if the_squares[0] == the_squares[4] and the_squares[4] == the_squares[8]:
+            winner =  the_squares[4]
+        if the_squares[2] == the_squares[4] and the_squares[4] == the_squares[6]:
+            winner =  the_squares[4]
+    return winner
+
 def main():
     pygame.init()
     # Square Details
@@ -50,6 +71,11 @@ def main():
                 sys.exit()
             update_squares(DISPLAYSURF, the_squares)
             pygame.display.update()
+            winner = check_win(the_squares)
+            if winner:
+                print("Player {0} wins.".format(winner))
+                pygame.quit()
+                sys.exit()
 
 if __name__ == '__main__':
     main()
