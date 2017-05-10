@@ -32,9 +32,13 @@ def main():
         for event in pygame.event.get():
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    pass
+                    for square in the_squares:
+                        if square.collidepoint(event.pos):
+                            pygame.draw.rect(DISPLAYSURF, YELLOW, square)
                 else:
-                    pass
+                    for square in the_squares:
+                        if square.collidepoint(event.pos):
+                            pygame.draw.rect(DISPLAYSURF, BLUE, square)
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
