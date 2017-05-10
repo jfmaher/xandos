@@ -1,6 +1,5 @@
 import pygame, sys
 from pygame.locals import *
-from operator import __sub__ as sub
 
 # Square Formatting
 SQUARE_LENGTH = 50
@@ -33,7 +32,7 @@ def check_win(the_squares):
             winner = the_squares[x]
     # Vertical Checks
     for x in [3,4,5]:
-        if the_squares[0] is not 0 and \
+        if the_squares[x] is not 0 and \
                         the_squares[x-3] == the_squares[x] and the_squares[x] == the_squares[x+3]:
             winner = the_squares[x]
     # Diagonal Checks
