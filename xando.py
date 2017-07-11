@@ -55,16 +55,18 @@ def main():
 
     DISPLAYSURF = pygame.display.set_mode((400,400))
     update_squares(DISPLAYSURF, the_squares)
-
+    player = 0
+    
     while True:
         for event in pygame.event.get():
             if event.type == MOUSEBUTTONDOWN:
                 for i in range(SQUARE_MAX):
                     if the_squares[i][0].collidepoint(event.pos):
-                        if event.button == 1:
+                        if player == 0:
                             the_squares[i][1] = 1
                         else:
                             the_squares[i][1] = 2
+                        player = 0 if player == 1 else 1
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
@@ -75,6 +77,7 @@ def main():
                 print("Player {0} wins.".format(winner))
                 pygame.quit()
                 sys.exit()
+
 
 if __name__ == '__main__':
     main()
